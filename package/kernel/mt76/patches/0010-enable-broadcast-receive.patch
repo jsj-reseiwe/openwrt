@@ -1,0 +1,42 @@
+--- a/mt7603_main.c	2016-03-21 12:57:41.000000000 +0100
++++ b/mt7603_main.c	2016-03-21 13:01:50.387015263 +0100
+@@ -183,30 +183,31 @@
+ 		dev->rxfilter |= !(flags & FIF_##_flag) * (_hw);	\
+ 	} while (0)
+ 
+-	dev->rxfilter &= ~(MT_WF_RFCR_DROP_OTHER_BSS |
++	dev->rxfilter &= ~(//MT_WF_RFCR_DROP_OTHER_BSS |
+ 			   MT_WF_RFCR_DROP_OTHER_BEACON |
+ 			   MT_WF_RFCR_DROP_FRAME_REPORT |
+ 			   MT_WF_RFCR_DROP_PROBEREQ |
+ 			   MT_WF_RFCR_DROP_MCAST_FILTERED |
+ 			   MT_WF_RFCR_DROP_MCAST |
+-			   MT_WF_RFCR_DROP_BCAST |
++			   //			   MT_WF_RFCR_DROP_BCAST |
+ 			   MT_WF_RFCR_DROP_DUPLICATE |
+-			   MT_WF_RFCR_DROP_A2_BSSID |
++			   //MT_WF_RFCR_DROP_A2_BSSID |
+ 			   MT_WF_RFCR_DROP_UNWANTED_CTL |
+ 			   MT_WF_RFCR_DROP_STBC_MULTI);
+-
++	
+ 	MT76_FILTER(OTHER_BSS, MT_WF_RFCR_DROP_OTHER_UC |
+ 			       MT_WF_RFCR_DROP_OTHER_TIM |
+-			       MT_WF_RFCR_DROP_A3_MAC |
+-			       MT_WF_RFCR_DROP_A3_BSSID);
+-
++			       MT_WF_RFCR_DROP_A3_MAC 
++		    //MT_WF_RFCR_DROP_A3_BSSID
++		    );
++		    /*
+ 	MT76_FILTER(FCSFAIL, MT_WF_RFCR_DROP_FCSFAIL);
+ 
++	*/
+ 	MT76_FILTER(CONTROL, MT_WF_RFCR_DROP_CTS |
+ 			     MT_WF_RFCR_DROP_RTS |
+ 			     MT_WF_RFCR_DROP_CTL_RSV |
+ 			     MT_WF_RFCR_DROP_NDPA);
+-
+ 	*total_flags = flags;
+ 	mt76_wr(dev, MT_WF_RFCR, dev->rxfilter);
+ }

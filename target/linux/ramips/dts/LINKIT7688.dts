@@ -163,11 +163,11 @@
 	};
 
 	wgpio: gpio-wifi {
-		compatible = "mediatek,gpio-wifi";
-		#address-cells = <1>;
-		#size-cells = <0>;
-		gpio-controller;
-		#gpio-cells = <2>;
+	       compatible = "mediatek, gpio-wifi";
+	       gpio-controller;
 	};
 
+	wmac@10300000 {
+		      status = "okay";
+	};
 };
